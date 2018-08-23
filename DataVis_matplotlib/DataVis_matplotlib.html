@@ -11775,24 +11775,23 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div align="center">
+<div align="left">
 <table style="width:50%">
   <tr>
-    <th>Hazırlayan</th>
-    <th>Versiyon</th> 
-    <th>Tarih (YY.AA.GG)</th> 
-    <th>Dil</th>
+    <th>Hazırlayan / Author</th>
+    <th>Versiyon / Version</th> 
+    <th>Tarih / Date </th> 
+    <th>Dil / Lang.</th>
   </tr>
   <tr>
     <td>dataFLOYD</td>
-    <td>v1.00</td> 
-    <td>23.08.2018</td>
-    <td>TR</td>
+    <td>v1.01</td> 
+    <td>23 Ağu 2018</td>
+    <td>TR </td>
   </tr>
 </table>
 </div><h1 id='Python-"matplotlib"-kütüphanesini-kullanarak-veri-görselleştirme---Temel-Grafikler'>Python "matplotlib" kütüphanesini kullanarak veri görselleştirme - Temel Grafikler<a class="anchor-link" href="#Python-%22matplotlib%22-k%C3%BCt%C3%BCphanesini-kullanarak-veri-g%C3%B6rselle%C5%9Ftirme---Temel-Grafikler">¶</a></h1><p>Görselleştirme elimizdeki veriyi anlamanın en iyi yoludur. Python matplotlib kütüphanesini kullanarak veri seti üzerinde istediğimiz görselleştirmeleri gerçekleştirebiliriz <br></p>
-<p>İşe matplotlib kütüphanesini yükleyerek başlayalım. Bunun yanında örnek olarak kullanmak amacıyla scikitlearn kütüphanesindeki örnek ve çok "bilindik" veri setlerini de yükleyelim.</p>
-<p>Bu yazımızda aşamalı bir yaklaşımla ilerleyeceğiz. Yani grafikleri en sade hallerinden çizdirmeye başlayacak ve üzerine eklemeler yapacağız.</p>
+<p>İşe matplotlib kütüphanesini yükleyerek başlayacağız ve aşamalı bir yaklaşımla ilerleyeceğiz. Yani grafikleri en sade hallerinden çizdirmeye başlayacak ve üzerine eklemeler yapacağız.</p>
 
 </div>
 </div>
@@ -11807,26 +11806,8 @@ div#notebook {
 
 <span class="n">fig_size</span> <span class="o">=</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
 
-<span class="c1"># Nümerik numpy kütüphanesini de ekleyelim</span>
+<span class="c1"># Nümerik numpy kütüphanesini de ekleyelim ne olur ne olmaz :)</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="c1">#veri setleri yükleniyor</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="o">*</span>
-<span class="c1"># load_boston([return_X_y])	Load and return the boston house-prices dataset (regression).</span>
-<span class="c1"># load_iris([return_X_y])	Load and return the iris dataset (classification).</span>
-<span class="c1"># load_diabetes([return_X_y])	Load and return the diabetes dataset (regression).</span>
-<span class="c1"># load_digits([n_class, return_X_y])	Load and return the digits dataset (classification).</span>
-<span class="c1"># load_linnerud([return_X_y])	Load and return the linnerud dataset (multivariate regression).</span>
-<span class="c1"># load_wine([return_X_y])	Load and return the wine dataset (classification).</span>
-<span class="c1"># load_breast_cancer([return_X_y])	Load and return the breast cancer wisconsin dataset (classification).</span>
-
-<span class="n">boston</span> <span class="o">=</span> <span class="n">load_boston</span><span class="p">()</span>
-<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
-<span class="n">diabetes</span> <span class="o">=</span> <span class="n">load_diabetes</span><span class="p">()</span>
-<span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
-<span class="n">linnerud</span> <span class="o">=</span> <span class="n">load_linnerud</span><span class="p">()</span>
-<span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">()</span>
-<span class="n">breast_cancer</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -11838,83 +11819,6 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Yukarıda yüklediğimiz her bir veriseti "dictionary" formatındadır. Örnek olarak birine bakalım.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">boston</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[2]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>dict_keys(['data', 'target', 'feature_names', 'DESCR'])</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Toplamda 4 adet alan (veya anahtar) bulunuyor. Bunlar sırasıyla</p>
-<ul>
-<li>data: Verinin bulunduğu alan</li>
-<li>target: Her bir örneğin sınıfının bulunduğu alan</li>
-<li>feature_names: Her bir özniteliğin isminin bulunduğu alan</li>
-<li>DESCR: Veri setinin tanımlamasının bulunduğu alan
-<br>
-Her bir alanın içinde ne olduğunu hızlıca görebilmek için aşağıdaki kod parçasını kullanabiliriz. Şimdilik çok fazla kalabalık etmemesi için bu kod parçasını kapatıyoruz.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># for key in boston.keys():</span>
-<span class="c1">#     print("************************")</span>
-<span class="c1">#     print(key)</span>
-<span class="c1">#     print("************************")</span>
-<span class="c1">#     print(boston[key])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Grafik tiplerini inceleyebiliriz artık</p>
 <hr>
 
 </div>
@@ -11943,7 +11847,7 @@ Bu tip grafikler en basit grafik tipi olup iki değişken arasındaki bağlantı
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 0'dan 2*pi'ye</span>
@@ -11997,7 +11901,7 @@ Bu tip grafikler en basit grafik tipi olup iki değişken arasındaki bağlantı
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
@@ -12045,8 +11949,8 @@ Bu tip grafikler en basit grafik tipi olup iki değişken arasındaki bağlantı
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Grafiğimizi daha güzel görünür hale getirmek için veri noktalarını da belirginleştirelim. </li>
-<li>Bunlara ek olarak da rengi kırmızı olan ikinci bir çizgi grafiği ekleyelim. Çizginin kalınlığı 5 olsun</li>
+<li>Grafiğimizi daha anlaşılır hale getirmek için veri noktalarını da belirginleştirelim. </li>
+<li>Rengi kırmızı olan ikinci bir çizgi grafiği ekleyelim. Çizginin kalınlığı 5 olsun</li>
 <li>Ayrıca bir de lejand (legend) ekleyim</li>
 </ul>
 
@@ -12055,7 +11959,7 @@ Bu tip grafikler en basit grafik tipi olup iki değişken arasındaki bağlantı
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
@@ -12119,7 +12023,7 @@ Bu tip grafikler en basit grafik tipi olup iki değişken arasındaki bağlantı
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
@@ -12178,7 +12082,7 @@ Bu tip grafikler en basit grafik tipi olup iki değişken arasındaki bağlantı
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Çizgi grafikle daha çok şey yapılabilir, şimdi ilerlemek adına bir sonraki grafik türüne geçelim.</p>
+<p>Çizgi grafikle daha çok şey yapılabilir, şimdi ilerlemek adına bir sonraki grafik türüne geçiyoruz.</p>
 <hr>
 
 </div>
@@ -12198,10 +12102,15 @@ Bu grafikler genelde iki değişkenin aralarındaki ilişkiyi gözönüne sermek
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Yeni figür oluşturuluyor</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#veri setleri yükleniyor</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">load_iris</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+
+<span class="c1"># Yeni figür oluşturuluyor</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
 <span class="c1"># ilk ve ikinci öznitelik için scatter grafiğini çizdirelim</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
@@ -12242,7 +12151,7 @@ Bu grafikler genelde iki değişkenin aralarındaki ilişkiyi gözönüne sermek
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Hazırladığımız grafiği 3. sınıflara ait olacak şekilde renklendirelim</li>
+<li>Hazırladığımız grafiği iris veri setindeki sınıflar uyarınca renklendirelim.</li>
 <li>Ek olarak boyutları 3. özniteliğe göre değiştirelim</li>
 </ul>
 
@@ -12251,7 +12160,7 @@ Bu grafikler genelde iki değişkenin aralarındaki ilişkiyi gözönüne sermek
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Yeni figür oluşturuluyor</span>
@@ -12294,14 +12203,14 @@ Bu grafikler genelde iki değişkenin aralarındaki ilişkiyi gözönüne sermek
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Yukarıdaki grafikte hangi rengin hangi sınıfa ait olduğu belli olmuyor. Bunun için bir legend eklememiz gerekiyor ve daha belirli renkler yapalım. Öncelikle veri setinde kaç sınıf olduğuna bakalım:</p>
+<p>Yukarıdaki grafikte hangi rengin hangi sınıfa ait olduğu belli olmuyor. Bunun için bir "legend" eklememiz gerekiyor. Öncelikle veri setinde kaç sınıf olduğuna bakalım:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span>
@@ -12317,7 +12226,7 @@ Bu grafikler genelde iki değişkenin aralarındaki ilişkiyi gözönüne sermek
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[10]:</div>
+<div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -12336,17 +12245,17 @@ Bu grafikler genelde iki değişkenin aralarındaki ilişkiyi gözönüne sermek
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Gördüğünüz gibi 3 sınıf var. İlk sınıfı kırmızı, ikinci sınıfı mavi, üçüncü sınıfı yeşil çizdirelim. Bunun için bir for döngüsü kullanalım.</p>
+<p>Gördüğünüz gibi 3 sınıf var. İlk sınıfı kırmızı, ikinci sınıfı mavi, üçüncü sınıfı yeşil çizdirelim. Bunun için bir for döngüsü kullanırsak iyi olacak. Böylelikle "legend"ı renklere göre atayabiliriz.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Renk isimlerini belirliyoruz</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">;</span><span class="c1"># Renk isimlerini belirliyoruz</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"r"</span><span class="p">,</span><span class="s2">"b"</span><span class="p">,</span><span class="s2">"g"</span><span class="p">]</span>
 <span class="c1"># figure oluşturalım</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
@@ -12393,19 +12302,19 @@ Bu grafikler genelde iki değişkenin aralarındaki ilişkiyi gözönüne sermek
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Grafik fena değil ama "lejand kısmındaki boyutların homojen olmasını istersek ne yapacağız" dediğinizi duyar gibiyim. Biraz daha kod üstünde oynayalım. Bunlara ek olarak şekilleri de çok ilginç şeyler yapalım :)</p>
+<p>Grafik fena değil ama "legend kısmındaki boyutların homojen olmasını istersek ne yapacağız" dediğinizi duyar gibiyim. Biraz daha kod üstünde oynayalım. Ve son bonus olarak şekilleri de çok ilginç şeyler yapalım :) Bunun için standart denklem formatını kullanacağız.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Renk isimlerini belirliyoruz</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"r"</span><span class="p">,</span><span class="s2">"b"</span><span class="p">,</span><span class="s2">"g"</span><span class="p">]</span>
-<span class="c1"># şekiller</span>
+<span class="c1"># şekiller standart denklem formatında</span>
 <span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">'$\alpha$'</span><span class="p">,</span><span class="sa">r</span><span class="s1">'$\beta$'</span><span class="p">,</span><span class="sa">r</span><span class="s1">'$\gamma$'</span><span class="p">]</span>
 <span class="c1"># figure oluşturalım</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
@@ -12488,7 +12397,7 @@ Adı üstünde sütun grafik işte diyip geçmeyin :) Bakalım burada neler yapa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
@@ -12543,7 +12452,7 @@ Adı üstünde sütun grafik işte diyip geçmeyin :) Bakalım burada neler yapa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
@@ -12602,7 +12511,7 @@ Adı üstünde sütun grafik işte diyip geçmeyin :) Bakalım burada neler yapa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
@@ -12664,7 +12573,7 @@ Sütun grafikleri üst üste veya yan yana koyarak da görselleştirme yapılabi
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
@@ -12724,7 +12633,7 @@ Sütun grafikleri üst üste veya yan yana koyarak da görselleştirme yapılabi
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fig_size</span><span class="p">)</span>
@@ -12796,7 +12705,7 @@ Sütun grafiğin özelleşmiş bir hali olan histogram bir değişkenin dağıl�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10000</span>
@@ -12849,7 +12758,7 @@ Bir "boxplot" grafiği değişkenin dağılımına ilişkin önemli bilgiler ver
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10000</span>
