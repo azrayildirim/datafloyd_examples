@@ -1,0 +1,32 @@
+&nbsp;
+You can access the most recent version (Jupiter Notebook) from the link below:
+
+<a href="
+      https://github.com/datafloyd/datafloyd_examples/blob/master/LinReg/LinReg_Tr.ipynb
+    ">
+      https://github.com/datafloyd/datafloyd_examples/blob/master/LinReg/LinReg_Tr.ipynb
+    </a>
+
+[raw] <script type="text/javascript">
+function resizeIframe(ifrm) {       
+    ifrm.style.height = ifrm.contentWindow.document.body.scrollHeight + 'px';
+    // Setting the width here, or setting overflowX to "hidden" as above both 
+    // work for this page. It may be that one turns out to be better.
+    ifrm.style.width = ifrm.contentWindow.document.body.scrollWidth + 'px';
+}
+</script> <script type="text/javascript">
+function onLoad() {    
+    var ifrm = document.getElementById('ipython_notebook_frame');   
+    setTimeout(resizeIframe, 0, ifrm);
+}
+</script> <iframe id="ipython_notebook_frame" style="height: 500px; width: 100%; padding: 0; border: none;" src="https://www.datafloyd.com/wp-content/uploads/2018/08/LinReg_Tr.html">
+</iframe> <script type="text/javascript">
+// By deleting and reinstating the iframe src, and by using setTimeout
+// rather than resizing directly we convince Safari to render the
+// page. 
+var iframe = document.getElementById('ipython_notebook_frame');
+iframe.onload = onLoad;
+var iSrc = iframe.src;
+iframe.src = '';
+iframe.src = iSrc;
+</script> [/raw]
