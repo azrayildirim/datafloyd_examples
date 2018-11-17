@@ -1,11 +1,4 @@
 &nbsp;
-Yazýnýn güncel haline (Jupyter Notebook) aþaðýdaki baðlantýdan eriþebilirsiniz:
-
-<a href="
-      https://github.com/datafloyd/datafloyd_examples/blob/master/LinReg/LinReg_Tr.ipynb
-    ">
-      https://github.com/datafloyd/datafloyd_examples/blob/master/LinReg/LinReg_Tr.ipynb
-    </a>
 
 [raw] <script type="text/javascript">
 function resizeIframe(ifrm) {       
