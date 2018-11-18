@@ -1,3 +1,47 @@
+# İÇİNDEKİLER
+- Python ile programlama
+  - Temeller
+      - [Python kullanmaya başlayın](https://github.com/datafloyd/datafloyd_examples/blob/master/Python/Py_Basics.ipynb)
+      - Veri bilimi için temel Python kullanımı
+  - Python kütüphaneleri
+    - numpy
+      - Pyhton “numpy” kütüphanesinin kullanımı
+    - pandas
+      - Python “pandas” kütüphanesine giriş
+- Veri görselleştirme
+  - Python kütüphaneleri
+      - matplotlib
+          - Python “matplotlib” kütüphanesini kullanarak veri görselleştirme – Temel Grafikler
+- Makine Öğrenmesi
+  - Derin Öğrenme
+    - Keras ile Basit bir Sınıflandırıcı Yapımı
+  - Denetimli öğrenme
+      - Karar ağaçları
+          - Karar ağaçlarına giriş
+      - Lineer Regresyon (Linear Regression)
+          - Doğrusal Regresyona (Linear Regression) giriş
+      - Lojistik Regresyon (Logistic Regression)
+          - Lojistik regresyon (Logistic Regression) nedir?
+      - kNN (k Nearest Neighbor: k En Yakın Komşuluk)
+          - kNN (Nearest Neighbor: En Yakın Komşuluk) algoritması
+      - Yapay Sinir Ağları (Neural Networks)
+          - Yapay Sinir Ağları 1.Bölüm / Tek Bir Nöron Hakkında
+          - Yapay Sinir Ağları 2.Bölüm
+      - SVM (Support Vector Machines) 
+          - SVM (Support Vector Machines) – Karar Destek Makineleri 1. Bölüm
+          - SVM (Support Vector Machines) – Karar Destek Makineleri 2. Bölüm
+          - SVM (Support Vector Machines) – Karar Destek Makineleri 3. Bölüm
+      - Denetimsiz Öğrenme
+          - k-Means
+              - k-Means kümeleme algoritması
+      - Veri kullanımı
+          - Makine Öğrenmesi Problemlerinde Veri Kullanımı
+              - Metrikler
+                  - “Confusion Matrix” hakkında
+      - Boyut İndirgeme (Dimensionality Reduction)
+          - PCA (Principal Component Analysis)
+              - PCA (Principal Component Analysis) ile ilk tanışma
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/datafloyd/datafloyd_examples/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
