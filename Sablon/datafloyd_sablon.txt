@@ -12,7 +12,7 @@ function onLoad() {
     var ifrm = document.getElementById('ipython_notebook_frame');   
     setTimeout(resizeIframe, 0, ifrm);
 }
-</script> <iframe id="ipython_notebook_frame" style="height: 500px; width: 100%; padding: 0; border: none;" src="https://www.datafloyd.com/wp-content/uploads/2018/08/LinReg_Tr.html">
+</script> <iframe id="ipython_notebook_frame" style="height: 1080px; width: 100%; padding: 0; border: none;" src="https://www.datafloyd.com/wp-content/uploads/2018/08/LinReg_Tr.html">
 </iframe> <script type="text/javascript">
 // By deleting and reinstating the iframe src, and by using setTimeout
 // rather than resizing directly we convince Safari to render the
