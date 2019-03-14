@@ -1,0 +1,1624 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{r\_basics}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    Hazırlayan
+
+Versiyon
+
+Tarih
+
+Dil
+
+dataFLOYD
+
+v1.00
+
+20 Şub 2019
+
+TR
+
+    \hypertarget{temel-r-kullanux131mux131}{%
+\section{Temel R kullanımı}\label{temel-r-kullanux131mux131}}
+
+    \begin{figure}
+\centering
+\includegraphics{r_basicslogo.png}
+\caption{r\_basicslogo.png}
+\end{figure}
+
+    Evet, \texttt{dataFLOYD} olarak R programlama dilini de ihmal etmek
+istemiyoruz. Bu yazımızla bir başlangıç verelim gerisi gelir herhalde :)
+Lafı uzatmadan hemen konumuza başlayalım
+
+    \hypertarget{bilgisayarux131mux131za-nasux131l-r-kurarux131z}{%
+\subsection{Bilgisayarımıza nasıl R
+kurarız?}\label{bilgisayarux131mux131za-nasux131l-r-kurarux131z}}
+
+    Başlamadan önce bilgisayarınıza ilk kez R kuracaksanız aşağıdaki
+yöntemleri kullanabilirsiniz.
+
+    \hypertarget{yuxf6ntem-rstudio-ile-r-kullanux131mux131}{%
+\subsubsection{\texorpdfstring{1. Yöntem: RStudio ile \texttt{R}
+kullanımı}{1. Yöntem: RStudio ile R kullanımı}}\label{yuxf6ntem-rstudio-ile-r-kullanux131mux131}}
+
+    Öncelikle aşağıdaki bağlantıdan işletim sisteminize uygun olan
+\texttt{R} paketini indirin ve bilgisayarınıza kurulumu gerçekleştirin.
+
+    https://cran.r-project.org/
+
+    Rstudio Desktop programını indirin. ``Open Source License'' versiyonunu
+kullanın. Bilgisayarınıza kurulum yapın
+
+    https://www.rstudio.com/products/rstudio/download/
+
+    RStudio programını kullanarak \texttt{R} alemlerine akabilirsiniz artık
+tebrikler!
+
+    \hypertarget{yuxf6ntem-anaconda-uxfczerinden-kurulum-yaparak-jupyter-notebook-ile-kullanmak}{%
+\subsubsection{2. Yöntem: Anaconda üzerinden kurulum yaparak Jupyter
+Notebook ile
+kullanmak}\label{yuxf6ntem-anaconda-uxfczerinden-kurulum-yaparak-jupyter-notebook-ile-kullanmak}}
+
+    Bilgisayarınızda Anaconda yoksa ilk önce bunu kurmalısınız. Python 3.x
+versiyonunu tercih etmenizi tavsiye ederim.
+
+    https://www.anaconda.com/distribution/\#download-section
+
+    Anaconda kurulumu sonrası ``Anaconda Prompt'' uygulamasını açınız ve
+aşağıdaki komutu yazarak \texttt{R} için yeni bir ortam oluşturun
+
+    \texttt{conda\ create\ -n\ mro\_env\ r-essentials\ mro-base}
+
+    Komut sonrası kurulum biraz vakit alabilir sabırlı olun:)
+
+    Herşey tamamlanınca yine ``Anaconda Prompt'' uygulamasında
+oluşturduğumuz ortama geçiş yapın.
+
+    \texttt{conda\ activate\ mro\_env}
+
+    Sonrasında yine ``Anaconda Prompt''ta aşağıdaki komutu giriyoruz ve
+``browser''da ``Jupyter'' açılıyor
+
+    \texttt{jupyter\ notebook}
+
+    Burada ``New'' kısmına basın, \texttt{R} seçin ve artık hazırsınız!
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \hypertarget{temel-operasyonlar}{%
+\subsection{Temel operasyonlar}\label{temel-operasyonlar}}
+
+    Temel operasyonlar her dilde hemen hemen aynıdır. 4 işleme bakalım
+
+    \begin{quote}
+R dilinde ``comment'' ekleme \# ile yapılır
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} Toplama}
+        \PY{l+m}{42} \PY{o}{+} \PY{l+m}{42}
+        \PY{c+c1}{\PYZsh{} Çıkarma}
+        \PY{l+m}{42}\PY{l+m}{\PYZhy{}12}
+        \PY{c+c1}{\PYZsh{} Çarpma}
+        \PY{l+m}{2} \PY{o}{*} \PY{l+m}{2}
+        \PY{c+c1}{\PYZsh{} Bölme}
+        \PY{l+m}{12} \PY{o}{/} \PY{l+m}{5}
+        \PY{c+c1}{\PYZsh{} Üs alma}
+        \PY{l+m}{5}\PY{n}{\PYZca{}3}
+        \PY{c+c1}{\PYZsh{} Mod alma}
+        \PY{l+m}{13} \PY{o}{\PYZpc{}\PYZpc{}} \PY{l+m}{3}
+\end{Verbatim}
+
+
+    84
+
+    
+    30
+
+    
+    4
+
+    
+    2.4
+
+    
+    125
+
+    
+    1
+
+    
+    \hypertarget{deux11fiux15fken-tanux131mlama-kurallarux131}{%
+\subsection{Değişken tanımlama
+kuralları}\label{deux11fiux15fken-tanux131mlama-kurallarux131}}
+
+    Değişken tanımlanırken aşağıdaki kurallara dikkat edilir * Değişkenlerde
+harf, rakam ve \texttt{.}, \texttt{\_} bulunabilir. * Örnek:
+\texttt{elma}, \texttt{armut20}, \texttt{benim.degiskenim},
+\texttt{bu\_da\_olur}, \texttt{Büyük.Harf} * Değişkenler bir harf veya
+\texttt{.} le başlamalı. Eğer \texttt{.} ile başlarsa bunun ardından bir
+rakam gelemez * Örnek: \texttt{.degisken}, \texttt{r2d2} * Bazı
+\texttt{reserved} kelimeler değişken ismi olarak kullanılamaz * Örnek:
+\texttt{TRUE}, \texttt{NULL}, \texttt{NaN} değişken olarak kullanılamaz
+
+    Şimdi bu R dilinde bir değişkene değer atama (assignment) dediğimiz olay
+biraz değişiktir. Python gibi bir dil kullanıyorsanız genellikle
+değişkene değer atamak için \texttt{=} kullanılır biliyorsunuz.
+
+    Ama \texttt{R} dilinde genel kabul edilen kullanım \texttt{\textless{}-}
+şeklindedir. \texttt{=} operatörü de çalışır, fakat \texttt{R}
+kullanıyorsanız \texttt{\textless{}-} kullanın lütfen, daha havalı olur
+:)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+m}{3}\PY{o}{*}\PY{l+m}{3}
+        \PY{n}{a}
+\end{Verbatim}
+
+
+    9
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} = operatörü de çalışır ama bunu kullanmayı tavsiye etmem}
+        \PY{n}{a} \PY{o}{=} \PY{l+m}{3}\PY{o}{*}\PY{l+m}{3}
+        \PY{n}{a}
+\end{Verbatim}
+
+
+    9
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+m}{3}
+        \PY{n}{b} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+m}{2}
+        \PY{n}{c} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n}{a} \PY{o}{+}\PY{n}{b}
+        \PY{n}{c}
+\end{Verbatim}
+
+
+    5
+
+    
+    \hypertarget{string}{%
+\subsubsection{string}\label{string}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{ilk\PYZus{}str} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{Merhaba dünya!\PYZdq{}}
+        \PY{n}{ilk\PYZus{}str}
+\end{Verbatim}
+
+
+    'Merhaba dünya!'
+
+    
+    \hypertarget{logical}{%
+\subsubsection{logical}\label{logical}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{asd} \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kc}{TRUE}
+        \PY{n}{qwe} \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kc}{FALSE}
+        \PY{n}{asd}
+        \PY{n}{qwe}
+\end{Verbatim}
+
+
+    TRUE
+
+    
+    FALSE
+
+    
+    \hypertarget{deux11fiux15fkenlerin-tiplerini-uxf6ux11frenmek}{%
+\subsubsection{Değişkenlerin tiplerini
+öğrenmek}\label{deux11fiux15fkenlerin-tiplerini-uxf6ux11frenmek}}
+
+    Bu amaçla \texttt{class} fonksiyonu kullanılır.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{x} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+m}{3.14}
+        \PY{n+nf}{class}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+        \PY{n}{y} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{pi\PYZdq{}}
+        \PY{n+nf}{class}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+        \PY{n}{z} \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kc}{FALSE}
+        \PY{n+nf}{class}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+\end{Verbatim}
+
+
+    'numeric'
+
+    
+    'character'
+
+    
+    'logical'
+
+    
+    \hypertarget{vektuxf6rler}{%
+\subsection{Vektörler}\label{vektuxf6rler}}
+
+    \texttt{R} kullanacaksanız vektörleri mutlaka bilmeniz gerekir.
+\texttt{c()} fonksiyonu kullanılarak vektör oluşturulur. Vektörler sayı
+olabileceği gibi başka tiplerden de oluşabilirler
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Nümerik}
+        \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{3}\PY{p}{)}
+        \PY{n}{a}
+        \PY{c+c1}{\PYZsh{} string}
+        \PY{n}{b} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{bir\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{iki\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{üç\PYZdq{}}\PY{p}{)}
+        \PY{n}{b}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 1
+\item 2
+\item 3
+\end{enumerate*}
+
+
+    
+    \begin{enumerate*}
+\item 'bir'
+\item 'iki'
+\item 'üç'
+\end{enumerate*}
+
+
+    
+    \hypertarget{vektuxf6rlerin-her-bir-elemanux131na-isim-verilebilir}{%
+\subsubsection{Vektörlerin her bir elemanına isim
+verilebilir}\label{vektuxf6rlerin-her-bir-elemanux131na-isim-verilebilir}}
+
+    \texttt{names()} fonksiyonu kullanılarak bu işlem gerçekleştirilebilir.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{10}\PY{p}{,}\PY{l+m}{20}\PY{p}{,}\PY{l+m}{30}\PY{p}{)}
+        \PY{n}{isimler} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Elma\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Armut\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Portakal\PYZdq{}}\PY{p}{)}
+        \PY{n+nf}{names}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n}{isimler}
+        \PY{n}{a}
+        \PY{c+c1}{\PYZsh{} İsimlemdirilmiş alanlara erişim}
+        \PY{n}{a}\PY{n}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Elma\PYZdq{}}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{description*}
+\item[Elma] 10
+\item[Armut] 20
+\item[Portakal] 30
+\end{description*}
+
+
+    
+    \textbf{Elma:} 10
+
+    
+    \hypertarget{nuxfcmerik-vektuxf6rler-uxfczerinde-uxe7eux15fitli-iux15flemler}{%
+\subsubsection{Nümerik vektörler üzerinde çeşitli
+işlemler}\label{nuxfcmerik-vektuxf6rler-uxfczerinde-uxe7eux15fitli-iux15flemler}}
+
+İşlemler eleman bazında yapılmaktadır.
+
+    \begin{quote}
+\textbf{İki vektörü eleman bazında toplamak, çarpmak, çıkarmak vb..}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{10}\PY{p}{,}\PY{l+m}{20}\PY{p}{,}\PY{l+m}{30}\PY{p}{)}
+         \PY{n}{b} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{3}\PY{p}{)}
+         \PY{n}{a}\PY{o}{+}\PY{n}{b}
+         \PY{n}{a}\PY{o}{*}\PY{n}{b}
+         \PY{n}{a}\PY{n}{\PYZca{}b}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 11
+\item 22
+\item 33
+\end{enumerate*}
+
+
+    
+    \begin{enumerate*}
+\item 10
+\item 40
+\item 90
+\end{enumerate*}
+
+
+    
+    \begin{enumerate*}
+\item 10
+\item 400
+\item 27000
+\end{enumerate*}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Boyutlar tutmazsa hata (error) vermez}
+         \PY{c+c1}{\PYZsh{} kısa olan vektörü ilk elemanından başlayarak }
+         \PY{c+c1}{\PYZsh{} diğerinin boyutuna yetişecek şekilde tamamlar}
+         \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{10}\PY{p}{,}\PY{l+m}{20}\PY{p}{,}\PY{l+m}{30}\PY{p}{)}
+         \PY{n}{b} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{4}\PY{p}{)}
+         \PY{n}{a}\PY{o}{+}\PY{n}{b}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Warning message in a + b:
+"uzun olan nesne uzunluğu kısa olan nesne uzunluğunun bir katı değil "
+    \end{Verbatim}
+
+    \begin{enumerate*}
+\item 11
+\item 22
+\item 33
+\item 14
+\end{enumerate*}
+
+
+    
+    \begin{quote}
+\textbf{Bir vektörün elemanlarının toplamı ve ortalaması}
+\end{quote}
+
+    Toplama için \texttt{sum()} ve ortalama için \texttt{mean()}
+fonksiyonları kullanılır.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{5}\PY{p}{,}\PY{l+m}{8}\PY{p}{)}
+         \PY{n+nf}{sum}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         \PY{n+nf}{mean}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+
+
+    20
+
+    
+    3.33333333333333
+
+    
+    \begin{quote}
+\textbf{İki vektörü karşılaştırma}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{5}\PY{p}{,}\PY{l+m}{8}\PY{p}{)}
+         \PY{n}{b} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{0}\PY{p}{,}\PY{l+m}{0}\PY{p}{,}\PY{l+m}{0}\PY{p}{)}
+         \PY{n}{a}\PY{o}{\PYZlt{}}\PY{n}{b}
+         \PY{c+c1}{\PYZsh{} a\PYZsq{}nın b\PYZsq{}den küçük elemanları için TRUE, }
+         \PY{c+c1}{\PYZsh{} diğerleri için FALSE olan bir vektör döndürür}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item TRUE
+\item TRUE
+\item TRUE
+\item FALSE
+\item FALSE
+\item FALSE
+\end{enumerate*}
+
+
+    
+    \begin{quote}
+\textbf{Vektörün elemanlarına erişim}
+\end{quote}
+
+    \texttt{R} programlama dilinde indeksler 1'den başlar. İstediğimiz
+elemana erişmek için \texttt{{[}{]}} kullanılır
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{4}\PY{p}{,}\PY{l+m}{5}\PY{p}{)}
+         \PY{n}{a}\PY{n}{[1}\PY{n}{]}
+         \PY{n}{a}\PY{n}{[5}\PY{n}{]}
+\end{Verbatim}
+
+
+    1
+
+    
+    5
+
+    
+    İndekslemeyi vektör olarak da yapabiliriz, bunun için bir vektör
+oluşturmamız gerekiyor. Yani bir serinin 1. ,3. ve 5. elemanına erişmek
+istersek bir vektör kullanmamız lazım
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{4}\PY{p}{,}\PY{l+m}{5}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} a vektörünün 1,3,5 elemanlarına erişmek için}
+         \PY{n}{a}\PY{n+nf}{[c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{5}\PY{p}{)}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 1
+\item 3
+\item 5
+\end{enumerate*}
+
+
+    
+    \begin{quote}
+\textbf{Kesit (Slice) alma}
+\end{quote}
+
+    Mesela \texttt{a} değişkeninin 2. elemanından 4. elemanına erişmek
+istersek \texttt{a{[}2:4{]}} kullanılır
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{4}\PY{p}{,}\PY{l+m}{5}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} a vektörünün 1,3,5 elemanlarına erişmek için}
+         \PY{n}{a}\PY{n}{[2}\PY{o}{:}\PY{l+m}{4}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 2
+\item 3
+\item 4
+\end{enumerate*}
+
+
+    
+    \hypertarget{matrisler}{%
+\subsection{Matrisler}\label{matrisler}}
+
+    Matrisler iki boyutlu vektörlerdir bildiğiniz gibi. Matris yaratmak için
+\texttt{matrix()} fonksiyonunu kullanırız.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{} Bu fonksiyonu çağırdığınızda}
+         \PY{c+c1}{\PYZsh{} 1:9 1\PYZsq{}den 9\PYZsq{}a kadar bir vektör yaratır}
+         \PY{c+c1}{\PYZsh{} nrow: Bu vektörü 3 satıra böler }
+         \PY{n+nf}{matrix}\PY{p}{(}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{9}\PY{p}{,}\PY{n}{nrow}\PY{o}{=}\PY{l+m}{3}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{tabular}{lll}
+	 1 & 4 & 7\\
+	 2 & 5 & 8\\
+	 3 & 6 & 9\\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{} Vektörün sıralamasını satır bazında yapmak istersek}
+         \PY{c+c1}{\PYZsh{} byrow=TRUE yapmamız gerekir}
+         \PY{n+nf}{matrix}\PY{p}{(}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{9}\PY{p}{,}\PY{n}{nrow}\PY{o}{=}\PY{l+m}{3}\PY{p}{,}\PY{n}{byrow}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{tabular}{lll}
+	 1 & 2 & 3\\
+	 4 & 5 & 6\\
+	 7 & 8 & 9\\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} Matrislerin satır ve sütunlarına isim verilebilir}
+         \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{matrix}\PY{p}{(}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{9}\PY{p}{,}\PY{n}{nrow}\PY{o}{=}\PY{l+m}{3}\PY{p}{,}\PY{n}{byrow}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         \PY{n+nf}{colnames}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{col1\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{col2\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{col3\PYZdq{}}\PY{p}{)}
+         \PY{n+nf}{rownames}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{row1\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{row2\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{row3\PYZdq{}}\PY{p}{)}
+         \PY{n}{a}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|lll}
+  & col1 & col2 & col3\\
+\hline
+	row1 & 1 & 2 & 3\\
+	row2 & 4 & 5 & 6\\
+	row3 & 7 & 8 & 9\\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} isimlendirme yaparsak erişim için bunu da kullanabiliriz}
+         \PY{n}{a}\PY{n}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{row1\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{col2\PYZdq{}}\PY{n}{]}
+\end{Verbatim}
+
+
+    2
+
+    
+    \begin{quote}
+\textbf{Satır ve sütun toplamlarının alınması}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{matrix}\PY{p}{(}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{9}\PY{p}{,}\PY{n}{nrow}\PY{o}{=}\PY{l+m}{3}\PY{p}{,}\PY{n}{byrow}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} satır bazında toplam}
+         \PY{n+nf}{rowSums}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Burada kafanız karışmasın sadece vektörü yatay olarak gösterdi }
+         
+         \PY{c+c1}{\PYZsh{} sütun bazında toplam}
+         \PY{n+nf}{colSums}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 6
+\item 15
+\item 24
+\end{enumerate*}
+
+
+    
+    \begin{enumerate*}
+\item 12
+\item 15
+\item 18
+\end{enumerate*}
+
+
+    
+    \begin{quote}
+Bir matrise vektör/matris ekleme \texttt{cbind()} ve \texttt{rbind()}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{matrix}\PY{p}{(}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{9}\PY{p}{,}\PY{n}{nrow}\PY{o}{=}\PY{l+m}{3}\PY{p}{,}\PY{n}{byrow}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         \PY{n}{a}
+\end{Verbatim}
+
+
+    \begin{tabular}{lll}
+	 1 & 2 & 3\\
+	 4 & 5 & 6\\
+	 7 & 8 & 9\\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n+nf}{cbind}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n+nf}{c}\PY{p}{(}\PY{l+m}{10}\PY{p}{,}\PY{l+m}{11}\PY{p}{,}\PY{l+m}{12}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{tabular}{llll}
+	 1  & 2  & 3  & 10\\
+	 4  & 5  & 6  & 11\\
+	 7  & 8  & 9  & 12\\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n+nf}{rbind}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n+nf}{c}\PY{p}{(}\PY{l+m}{10}\PY{p}{,}\PY{l+m}{11}\PY{p}{,}\PY{l+m}{12}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{tabular}{lll}
+	  1 &  2 &  3\\
+	  4 &  5 &  6\\
+	  7 &  8 &  9\\
+	 10 & 11 & 12\\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{} iki matrisi birbirine ekleme}
+         \PY{n}{b} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{matrix}\PY{p}{(}\PY{l+m}{11}\PY{o}{:}\PY{l+m}{19}\PY{p}{,}\PY{n}{nrow}\PY{o}{=}\PY{l+m}{3}\PY{p}{,}\PY{n}{byrow}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         \PY{n+nf}{cbind}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{tabular}{llllll}
+	 1  & 2  & 3  & 11 & 12 & 13\\
+	 4  & 5  & 6  & 14 & 15 & 16\\
+	 7  & 8  & 9  & 17 & 18 & 19\\
+\end{tabular}
+
+
+    
+    \begin{quote}
+\textbf{Matrislerden kesit alma}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{matrix}\PY{p}{(}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{9}\PY{p}{,}\PY{n}{nrow}\PY{o}{=}\PY{l+m}{3}\PY{p}{,}\PY{n}{byrow}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         \PY{n}{a}
+         \PY{c+c1}{\PYZsh{} a matrisinden kesit}
+         \PY{n}{a}\PY{n}{[2}\PY{o}{:}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{2}\PY{o}{:}\PY{l+m}{3}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{tabular}{lll}
+	 1 & 2 & 3\\
+	 4 & 5 & 6\\
+	 7 & 8 & 9\\
+\end{tabular}
+
+
+    
+    \begin{tabular}{ll}
+	 5 & 6\\
+	 8 & 9\\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{\PYZsh{} a matrisinin ilk sütunu}
+         \PY{n}{a}\PY{n}{[}\PY{p}{,}\PY{l+m}{1}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 1
+\item 4
+\item 7
+\end{enumerate*}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+c1}{\PYZsh{} a matrisinin ilk satırı}
+         \PY{n}{a}\PY{n}{[1}\PY{p}{,}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 1
+\item 2
+\item 3
+\end{enumerate*}
+
+
+    
+    \hypertarget{faktuxf6r-factors}{%
+\subsection{Faktör (Factors)}\label{faktuxf6r-factors}}
+
+    Dikkatinizi istiyorum burada, eğer kategorik bir değişken yaratmak
+istiyorsanız (örneğin Kadın Erkek gibi) \texttt{factors()} fonksiyonunu
+kullanılırız.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{K\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{E\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{E\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{K\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{K\PYZdq{}}\PY{p}{)}
+         \PY{n+nf}{class}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         \PY{n}{b} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{factor}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         \PY{n+nf}{class}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+    'character'
+
+    
+    'factor'
+
+    
+    Peki neden yaptık bunu? Şimdi yukarıdaki örnekteki \texttt{b}
+değişkenini biraz daha inceleyelim. \texttt{levels()} fonksiyonunu
+kullanalım.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n+nf}{levels}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 'E'
+\item 'K'
+\end{enumerate*}
+
+
+    
+    Gördüğünüz gibi iki adet seviye mevcut. İstersek bunların isimlerini de
+değiştirebiliriz.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n+nf}{levels}\PY{p}{(}\PY{n}{b}\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Kadın\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Erkek\PYZdq{}}\PY{p}{)}
+         \PY{n}{b}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item Erkek
+\item Kadın
+\item Kadın
+\item Erkek
+\item Erkek
+\end{enumerate*}
+
+
+    
+    Özet yapma kabiliyeti de var bu değişkenlerin. \texttt{summary()}
+kullanmamız lazım.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n+nf}{summary}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{description*}
+\item[Kadın] 2
+\item[Erkek] 3
+\end{description*}
+
+
+    
+    \hypertarget{sux131ralux131-faktuxf6r}{%
+\subsubsection{Sıralı faktör}\label{sux131ralux131-faktuxf6r}}
+
+    Faktörleri sıralı halde yapabiliriz. \texttt{summary()} fonksiyonu ile
+özet yaparsak farkı anlayabiliriz.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{hiz} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{iki\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{üç\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{bir\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{bir\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{üç\PYZdq{}}\PY{p}{)}
+         \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{factor}\PY{p}{(}\PY{n}{hiz}\PY{p}{,}\PY{n}{ordered}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{,}\PY{n}{levels}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{bir\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{iki\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{üç\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n+nf}{summary}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{description*}
+\item[bir] 2
+\item[iki] 1
+\item[üç] 2
+\end{description*}
+
+
+    
+    Sıralı olmasının bir güzelliği de karşılaştırma yapabilmemizdir. Mesela
+\texttt{a} nın ilk elemanı ile ikinci elemanını karşılaştıralım.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{a}\PY{n}{[1}\PY{n}{]} \PY{o}{\PYZgt{}} \PY{n}{a} \PY{n}{[2}\PY{n}{]}
+         \PY{c+c1}{\PYZsh{} yukarıda sıralı faktörü bir, iki, üç olarak }
+         \PY{c+c1}{\PYZsh{} tanımladığımız için ve a[1] = \PYZdq{}iki\PYZdq{} a[2] = \PYZdq{}üç\PYZdq{}}
+         \PY{c+c1}{\PYZsh{} olduğu için sonuç FALSE çıkacak}
+\end{Verbatim}
+
+
+    FALSE
+
+    
+    \hypertarget{dataframe}{%
+\subsection{DataFrame}\label{dataframe}}
+
+    Geldik en önemli veri yapısı olan \texttt{dataframe}'e.
+\texttt{dataframe}i bir ``excel'' tablosu olarak düşünebiliriz. Yani
+satırlar ve sütunlar mevcut. Her bir satır bir gözlemi her bir sütunda
+bir değişkeni belirtiyor.
+
+    \texttt{R} içerisinde gömülü olan örnek \texttt{dataframe} yapıları var.
+Bunlardan \texttt{mtcars}'a bakalım
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{mtcars}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|lllllllllll}
+  & mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear & carb\\
+\hline
+	Mazda RX4 & 21.0  & 6     & 160.0 & 110   & 3.90  & 2.620 & 16.46 & 0     & 1     & 4     & 4    \\
+	Mazda RX4 Wag & 21.0  & 6     & 160.0 & 110   & 3.90  & 2.875 & 17.02 & 0     & 1     & 4     & 4    \\
+	Datsun 710 & 22.8  & 4     & 108.0 &  93   & 3.85  & 2.320 & 18.61 & 1     & 1     & 4     & 1    \\
+	Hornet 4 Drive & 21.4  & 6     & 258.0 & 110   & 3.08  & 3.215 & 19.44 & 1     & 0     & 3     & 1    \\
+	Hornet Sportabout & 18.7  & 8     & 360.0 & 175   & 3.15  & 3.440 & 17.02 & 0     & 0     & 3     & 2    \\
+	Valiant & 18.1  & 6     & 225.0 & 105   & 2.76  & 3.460 & 20.22 & 1     & 0     & 3     & 1    \\
+	Duster 360 & 14.3  & 8     & 360.0 & 245   & 3.21  & 3.570 & 15.84 & 0     & 0     & 3     & 4    \\
+	Merc 240D & 24.4  & 4     & 146.7 &  62   & 3.69  & 3.190 & 20.00 & 1     & 0     & 4     & 2    \\
+	Merc 230 & 22.8  & 4     & 140.8 &  95   & 3.92  & 3.150 & 22.90 & 1     & 0     & 4     & 2    \\
+	Merc 280 & 19.2  & 6     & 167.6 & 123   & 3.92  & 3.440 & 18.30 & 1     & 0     & 4     & 4    \\
+	Merc 280C & 17.8  & 6     & 167.6 & 123   & 3.92  & 3.440 & 18.90 & 1     & 0     & 4     & 4    \\
+	Merc 450SE & 16.4  & 8     & 275.8 & 180   & 3.07  & 4.070 & 17.40 & 0     & 0     & 3     & 3    \\
+	Merc 450SL & 17.3  & 8     & 275.8 & 180   & 3.07  & 3.730 & 17.60 & 0     & 0     & 3     & 3    \\
+	Merc 450SLC & 15.2  & 8     & 275.8 & 180   & 3.07  & 3.780 & 18.00 & 0     & 0     & 3     & 3    \\
+	Cadillac Fleetwood & 10.4  & 8     & 472.0 & 205   & 2.93  & 5.250 & 17.98 & 0     & 0     & 3     & 4    \\
+	Lincoln Continental & 10.4  & 8     & 460.0 & 215   & 3.00  & 5.424 & 17.82 & 0     & 0     & 3     & 4    \\
+	Chrysler Imperial & 14.7  & 8     & 440.0 & 230   & 3.23  & 5.345 & 17.42 & 0     & 0     & 3     & 4    \\
+	Fiat 128 & 32.4  & 4     &  78.7 &  66   & 4.08  & 2.200 & 19.47 & 1     & 1     & 4     & 1    \\
+	Honda Civic & 30.4  & 4     &  75.7 &  52   & 4.93  & 1.615 & 18.52 & 1     & 1     & 4     & 2    \\
+	Toyota Corolla & 33.9  & 4     &  71.1 &  65   & 4.22  & 1.835 & 19.90 & 1     & 1     & 4     & 1    \\
+	Toyota Corona & 21.5  & 4     & 120.1 &  97   & 3.70  & 2.465 & 20.01 & 1     & 0     & 3     & 1    \\
+	Dodge Challenger & 15.5  & 8     & 318.0 & 150   & 2.76  & 3.520 & 16.87 & 0     & 0     & 3     & 2    \\
+	AMC Javelin & 15.2  & 8     & 304.0 & 150   & 3.15  & 3.435 & 17.30 & 0     & 0     & 3     & 2    \\
+	Camaro Z28 & 13.3  & 8     & 350.0 & 245   & 3.73  & 3.840 & 15.41 & 0     & 0     & 3     & 4    \\
+	Pontiac Firebird & 19.2  & 8     & 400.0 & 175   & 3.08  & 3.845 & 17.05 & 0     & 0     & 3     & 2    \\
+	Fiat X1-9 & 27.3  & 4     &  79.0 &  66   & 4.08  & 1.935 & 18.90 & 1     & 1     & 4     & 1    \\
+	Porsche 914-2 & 26.0  & 4     & 120.3 &  91   & 4.43  & 2.140 & 16.70 & 0     & 1     & 5     & 2    \\
+	Lotus Europa & 30.4  & 4     &  95.1 & 113   & 3.77  & 1.513 & 16.90 & 1     & 1     & 5     & 2    \\
+	Ford Pantera L & 15.8  & 8     & 351.0 & 264   & 4.22  & 3.170 & 14.50 & 0     & 1     & 5     & 4    \\
+	Ferrari Dino & 19.7  & 6     & 145.0 & 175   & 3.62  & 2.770 & 15.50 & 0     & 1     & 5     & 6    \\
+	Maserati Bora & 15.0  & 8     & 301.0 & 335   & 3.54  & 3.570 & 14.60 & 0     & 1     & 5     & 8    \\
+	Volvo 142E & 21.4  & 4     & 121.0 & 109   & 4.11  & 2.780 & 18.60 & 1     & 1     & 4     & 2    \\
+\end{tabular}
+
+
+    
+    Bir verinin \texttt{dataframe} yapısında olmasının birçok avantajı var.
+Bunları tek tek anlatmak yerine örneklerle gidelim
+
+    \begin{quote}
+\textbf{\texttt{head()} ve \texttt{str()} (structure) fonksiyonları}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{c+c1}{\PYZsh{} ilk örneklerini göstermek istersek}
+         \PY{c+c1}{\PYZsh{} n kaç tane örnek gösterileceğini belirtir}
+         \PY{n+nf}{head}\PY{p}{(}\PY{n}{mtcars}\PY{p}{,}\PY{n}{n}\PY{o}{=}\PY{l+m}{3}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|lllllllllll}
+  & mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear & carb\\
+\hline
+	Mazda RX4 & 21.0  & 6     & 160   & 110   & 3.90  & 2.620 & 16.46 & 0     & 1     & 4     & 4    \\
+	Mazda RX4 Wag & 21.0  & 6     & 160   & 110   & 3.90  & 2.875 & 17.02 & 0     & 1     & 4     & 4    \\
+	Datsun 710 & 22.8  & 4     & 108   &  93   & 3.85  & 2.320 & 18.61 & 1     & 1     & 4     & 1    \\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{c+c1}{\PYZsh{} Değişkenler hakkında bilgi verir}
+         \PY{n+nf}{str}\PY{p}{(}\PY{n}{mtcars}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+'data.frame':	32 obs. of  11 variables:
+ \$ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 {\ldots}
+ \$ cyl : num  6 6 4 6 8 6 8 4 4 6 {\ldots}
+ \$ disp: num  160 160 108 258 360 {\ldots}
+ \$ hp  : num  110 110 93 110 175 105 245 62 95 123 {\ldots}
+ \$ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 {\ldots}
+ \$ wt  : num  2.62 2.88 2.32 3.21 3.44 {\ldots}
+ \$ qsec: num  16.5 17 18.6 19.4 17 {\ldots}
+ \$ vs  : num  0 0 1 1 0 1 0 1 1 1 {\ldots}
+ \$ am  : num  1 1 1 0 0 0 0 0 0 0 {\ldots}
+ \$ gear: num  4 4 4 3 3 3 3 4 4 4 {\ldots}
+ \$ carb: num  4 4 1 1 2 1 4 2 2 4 {\ldots}
+
+    \end{Verbatim}
+
+    \begin{quote}
+\textbf{\texttt{datafame} nasıl oluşturulur?}
+\end{quote}
+
+    Hazır veri seti kullanmak kolay diyorsunuz sanırım :) Sıfırdan bir tane
+yapalım isterseniz. \texttt{data.frame} ile hazırlıyoruz.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{isim} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Ali\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Ahmet\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Ayşe\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Ayla\PYZdq{}}\PY{p}{)}
+         \PY{n}{boy} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{183}\PY{p}{,}\PY{l+m}{172}\PY{p}{,}\PY{l+m}{165}\PY{p}{,}\PY{l+m}{190}\PY{p}{)}
+         \PY{n}{cinsiyet} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{E\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{E\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{K\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{K\PYZdq{}}\PY{p}{)}
+         \PY{n}{kilo} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{90.1}\PY{p}{,}\PY{l+m}{70.4}\PY{p}{,}\PY{l+m}{55.3}\PY{p}{,}\PY{l+m}{65.8}\PY{p}{)}
+         \PY{n}{kisiler} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{data.frame}\PY{p}{(}\PY{n}{isim}\PY{p}{,}\PY{n}{boy}\PY{p}{,}\PY{n}{cinsiyet}\PY{p}{,}\PY{n}{kilo}\PY{p}{)}
+         \PY{n}{kisiler}
+         \PY{n+nf}{str}\PY{p}{(}\PY{n}{kisiler}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|llll}
+ isim & boy & cinsiyet & kilo\\
+\hline
+	 Ali   & 183   & E     & 90.1 \\
+	 Ahmet & 172   & E     & 70.4 \\
+	 Ayşe  & 165   & K     & 55.3 \\
+	 Ayla  & 190   & K     & 65.8 \\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+'data.frame':	4 obs. of  4 variables:
+ \$ isim    : Factor w/ 4 levels "Ahmet","Ali",..: 2 1 4 3
+ \$ boy     : num  183 172 165 190
+ \$ cinsiyet: Factor w/ 2 levels "E","K": 1 1 2 2
+ \$ kilo    : num  90.1 70.4 55.3 65.8
+
+    \end{Verbatim}
+
+    Dikkat ederseniz bazı değişkenleri otomatik olarak \texttt{factor}
+haline çevrilmiştir.
+
+    \begin{quote}
+\textbf{\texttt{dataframe} yapısında matrislerde olduğu gibi kesit alma
+yapabiliriz}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{mtcars}\PY{n}{[1}\PY{p}{,}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|lllllllllll}
+  & mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear & carb\\
+\hline
+	Mazda RX4 & 21    & 6     & 160   & 110   & 3.9   & 2.62  & 16.46 & 0     & 1     & 4     & 4    \\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{mtcars}\PY{n}{[}\PY{p}{,}\PY{l+m}{1}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 21
+\item 21
+\item 22.8
+\item 21.4
+\item 18.7
+\item 18.1
+\item 14.3
+\item 24.4
+\item 22.8
+\item 19.2
+\item 17.8
+\item 16.4
+\item 17.3
+\item 15.2
+\item 10.4
+\item 10.4
+\item 14.7
+\item 32.4
+\item 30.4
+\item 33.9
+\item 21.5
+\item 15.5
+\item 15.2
+\item 13.3
+\item 19.2
+\item 27.3
+\item 26
+\item 30.4
+\item 15.8
+\item 19.7
+\item 15
+\item 21.4
+\end{enumerate*}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{mtcars}\PY{n}{[3}\PY{o}{:}\PY{l+m}{5}\PY{p}{,}\PY{l+m}{4}\PY{o}{:}\PY{l+m}{6}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|lll}
+  & hp & drat & wt\\
+\hline
+	Datsun 710 &  93   & 3.85  & 2.320\\
+	Hornet 4 Drive & 110   & 3.08  & 3.215\\
+	Hornet Sportabout & 175   & 3.15  & 3.440\\
+\end{tabular}
+
+
+    
+    \begin{quote}
+Doğrudan sütun isimlerini de yazarak erişim veriye gerçekleştirebiliriz.
+İkili sütun örneği yapalım.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{kisiler}\PY{n}{[2}\PY{o}{:}\PY{l+m}{3}\PY{p}{,}\PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{kilo\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{boy\PYZdq{}}\PY{p}{)}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|ll}
+  & kilo & boy\\
+\hline
+	2 & 70.4 & 172 \\
+	3 & 55.3 & 165 \\
+\end{tabular}
+
+
+    
+    \begin{quote}
+Genellikle değişkenlere (sütunlara) erişim gerçekleştirmek için
+\texttt{\$} işareti kullanılır.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{kisiler}\PY{o}{\PYZdl{}}\PY{n}{boy}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 183
+\item 172
+\item 165
+\item 190
+\end{enumerate*}
+
+
+    
+    \begin{quote}
+\textbf{\texttt{dataframe} yapılarında koşullu seçim nasıl yapılır?}
+\end{quote}
+
+    Örneğin hazırladığımız ``kisiler'' verisetinde boyu 175 altı olanları
+bulalım
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{c+c1}{\PYZsh{} bu bir logical seri döndürür}
+         \PY{n}{kisiler}\PY{o}{\PYZdl{}}\PY{n}{boy}\PY{o}{\PYZlt{}}\PY{l+m}{175}
+         
+         \PY{c+c1}{\PYZsh{} bu seriyi satır kısmına veriyoruz sütunların hepsini alıyoruz}
+         \PY{c+c1}{\PYZsh{} kisiler[\PYZhy{}\PYZhy{}satırlar\PYZhy{}\PYZhy{} ,\PYZhy{}\PYZhy{}sütunlar\PYZhy{}\PYZhy{}]}
+         \PY{n}{kisiler}\PY{n}{[kisiler}\PY{o}{\PYZdl{}}\PY{n}{boy}\PY{o}{\PYZlt{}}\PY{l+m}{175}\PY{p}{,}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item FALSE
+\item TRUE
+\item TRUE
+\item FALSE
+\end{enumerate*}
+
+
+    
+    \begin{tabular}{r|llll}
+  & isim & boy & cinsiyet & kilo\\
+\hline
+	2 & Ahmet & 172   & E     & 70.4 \\
+	3 & Ayşe  & 165   & K     & 55.3 \\
+\end{tabular}
+
+
+    
+    Boyu 175 altı ve kilosu 60 üstü olanları bulalım. Burada \texttt{\&}
+(ve) operatörü kullanalım.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{kisiler}\PY{n}{[kisiler}\PY{o}{\PYZdl{}}\PY{n}{boy}\PY{o}{\PYZlt{}}\PY{l+m}{175} \PY{o}{\PYZam{}} \PY{n}{kisiler}\PY{o}{\PYZdl{}}\PY{n}{kilo}\PY{o}{\PYZgt{}}\PY{l+m}{60}\PY{p}{,}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|llll}
+  & isim & boy & cinsiyet & kilo\\
+\hline
+	2 & Ahmet & 172   & E     & 70.4 \\
+\end{tabular}
+
+
+    
+    \begin{quote}
+\textbf{Koşullu seçim yapmak için \texttt{subset} fonksiyonunu da
+kullanabiliriz.}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n+nf}{subset}\PY{p}{(}\PY{n}{kisiler}\PY{p}{,}\PY{n}{boy}\PY{o}{\PYZlt{}}\PY{l+m}{175}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|llll}
+  & isim & boy & cinsiyet & kilo\\
+\hline
+	2 & Ahmet & 172   & E     & 70.4 \\
+	3 & Ayşe  & 165   & K     & 55.3 \\
+\end{tabular}
+
+
+    
+    \begin{quote}
+\texttt{order()} fonksiyonu sıralama yapmak için kullanılabilir.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{n+nf}{order}\PY{p}{(}\PY{n}{kisiler}\PY{o}{\PYZdl{}}\PY{n}{boy}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 3
+\item 2
+\item 1
+\item 4
+\end{enumerate*}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{c+c1}{\PYZsh{} order() sonucunu yine satır kısmına }
+         \PY{c+c1}{\PYZsh{} verirsek veri yapısını sıralayabiliriz.}
+         \PY{n}{kisiler}\PY{n+nf}{[order}\PY{p}{(}\PY{n}{kisiler}\PY{o}{\PYZdl{}}\PY{n}{boy}\PY{p}{)}\PY{p}{,}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|llll}
+  & isim & boy & cinsiyet & kilo\\
+\hline
+	3 & Ayşe  & 165   & K     & 55.3 \\
+	2 & Ahmet & 172   & E     & 70.4 \\
+	1 & Ali   & 183   & E     & 90.1 \\
+	4 & Ayla  & 190   & K     & 65.8 \\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{c+c1}{\PYZsh{} Büyükten küçüğe sıralamak istersek}
+         \PY{n}{kisiler}\PY{n+nf}{[order}\PY{p}{(}\PY{n}{kisiler}\PY{o}{\PYZdl{}}\PY{n}{kilo}\PY{p}{,}\PY{n}{decreasing} \PY{o}{=} \PY{k+kc}{TRUE}\PY{p}{)}\PY{p}{,}\PY{n}{]}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|llll}
+  & isim & boy & cinsiyet & kilo\\
+\hline
+	1 & Ali   & 183   & E     & 90.1 \\
+	2 & Ahmet & 172   & E     & 70.4 \\
+	4 & Ayla  & 190   & K     & 65.8 \\
+	3 & Ayşe  & 165   & K     & 55.3 \\
+\end{tabular}
+
+
+    
+    \hypertarget{lists-listeler}{%
+\subsection{Lists (Listeler)}\label{lists-listeler}}
+
+    Listeler genel tanımları itibariyle içine her türlü nesneyi
+atabildiğimiz veri yapılarıdır. \texttt{list()} fonksiyonu ile
+oluşturulur.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{a} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{4}\PY{p}{)}
+         \PY{n}{b} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{matrix}\PY{p}{(}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{9}\PY{p}{,}\PY{n}{nrow}\PY{o}{=}\PY{l+m}{3}\PY{p}{)}
+         \PY{n}{c} \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kc}{TRUE}
+         \PY{n}{d} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n}{kisiler} \PY{c+c1}{\PYZsh{} R içine gömülü veri seti}
+         \PY{n}{liste} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{list}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{c}\PY{p}{,}\PY{n}{d}\PY{p}{)}
+         \PY{n}{liste}
+\end{Verbatim}
+
+
+    \begin{enumerate}
+\item \begin{enumerate*}
+\item 1
+\item 2
+\item 3
+\item 4
+\end{enumerate*}
+
+\item \begin{tabular}{lll}
+	 1 & 4 & 7\\
+	 2 & 5 & 8\\
+	 3 & 6 & 9\\
+\end{tabular}
+
+\item TRUE
+\item \begin{tabular}{r|llll}
+ isim & boy & cinsiyet & kilo\\
+\hline
+	 Ali   & 183   & E     & 90.1 \\
+	 Ahmet & 172   & E     & 70.4 \\
+	 Ayşe  & 165   & K     & 55.3 \\
+	 Ayla  & 190   & K     & 65.8 \\
+\end{tabular}
+
+\end{enumerate}
+
+
+    
+    Liste yapısına isim de verebiliriz.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n+nf}{names}\PY{p}{(}\PY{n}{liste}\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{vektör\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{matris\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{logical\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{dataframe\PYZdq{}}\PY{p}{)}
+         \PY{n}{liste}
+\end{Verbatim}
+
+
+    \begin{description}
+\item[\$vektör] \begin{enumerate*}
+\item 1
+\item 2
+\item 3
+\item 4
+\end{enumerate*}
+
+\item[\$matris] \begin{tabular}{lll}
+	 1 & 4 & 7\\
+	 2 & 5 & 8\\
+	 3 & 6 & 9\\
+\end{tabular}
+
+\item[\$logical] TRUE
+\item[\$dataframe] \begin{tabular}{r|llll}
+ isim & boy & cinsiyet & kilo\\
+\hline
+	 Ali   & 183   & E     & 90.1 \\
+	 Ahmet & 172   & E     & 70.4 \\
+	 Ayşe  & 165   & K     & 55.3 \\
+	 Ayla  & 190   & K     & 65.8 \\
+\end{tabular}
+
+\end{description}
+
+
+    
+    Listeyi hazırlarken de isim verebiliriz. Burada dikkat edin isimleri
+``string'' olarak vermiyoruz.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n+nf}{list}\PY{p}{(}\PY{n}{vektör}\PY{o}{=}\PY{n}{a}\PY{p}{,}\PY{n}{matris}\PY{o}{=}\PY{n}{b}\PY{p}{,}\PY{n}{logical}\PY{o}{=}\PY{n}{c}\PY{p}{,}\PY{n}{dataframe}\PY{o}{=}\PY{n}{d}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{description}
+\item[\$vektör] \begin{enumerate*}
+\item 1
+\item 2
+\item 3
+\item 4
+\end{enumerate*}
+
+\item[\$matris] \begin{tabular}{lll}
+	 1 & 4 & 7\\
+	 2 & 5 & 8\\
+	 3 & 6 & 9\\
+\end{tabular}
+
+\item[\$logical] TRUE
+\item[\$dataframe] \begin{tabular}{r|llll}
+ isim & boy & cinsiyet & kilo\\
+\hline
+	 Ali   & 183   & E     & 90.1 \\
+	 Ahmet & 172   & E     & 70.4 \\
+	 Ayşe  & 165   & K     & 55.3 \\
+	 Ayla  & 190   & K     & 65.8 \\
+\end{tabular}
+
+\end{description}
+
+
+    
+    \begin{quote}
+Listenin alt elemanlarını seçerken \texttt{\$} işaretini kullanabiliriz.
+Hatta bunu birden fazla kez yapabiliriz.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{liste}\PY{o}{\PYZdl{}}\PY{n}{dataframe}\PY{o}{\PYZdl{}}\PY{n}{kilo}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 90.1
+\item 70.4
+\item 55.3
+\item 65.8
+\end{enumerate*}
+
+
+    
+    \begin{quote}
+Listeye bir eleman daha eklemek istersek \texttt{c()} fonksiyonunu
+kullanırız.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{liste} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{n}{liste}\PY{p}{,}\PY{n}{ekleme}\PY{o}{=}\PY{l+m}{42}\PY{p}{)}
+         \PY{n}{liste}
+\end{Verbatim}
+
+
+    \begin{description}
+\item[\$vektör] \begin{enumerate*}
+\item 1
+\item 2
+\item 3
+\item 4
+\end{enumerate*}
+
+\item[\$matris] \begin{tabular}{lll}
+	 1 & 4 & 7\\
+	 2 & 5 & 8\\
+	 3 & 6 & 9\\
+\end{tabular}
+
+\item[\$logical] TRUE
+\item[\$dataframe] \begin{tabular}{r|llll}
+ isim & boy & cinsiyet & kilo\\
+\hline
+	 Ali   & 183   & E     & 90.1 \\
+	 Ahmet & 172   & E     & 70.4 \\
+	 Ayşe  & 165   & K     & 55.3 \\
+	 Ayla  & 190   & K     & 65.8 \\
+\end{tabular}
+
+\item[\$ekleme] 42
+\end{description}
+
+
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
